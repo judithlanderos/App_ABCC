@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(!$_SESSION['valida'])
+header('Location: login.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,13 +13,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <style>
-        body {
+           body {
             font-family: Arial, sans-serif;
             background-color: #f8f9fa;
         }
         .navbar {
+            background-color: #007bff !important;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            background-color: #343a40 !important;
         }
         .navbar-brand, .nav-link {
             color: #fff !important;
@@ -22,13 +28,28 @@
             color: #d4d4d4 !important;
         }
         .dropdown-menu {
-            background-color: #343a40;
+            background-color: #007bff;
         }
         .dropdown-item {
             color: #fff;
         }
         .dropdown-item:hover {
-            background-color: #495057;
+            background-color: #0056b3;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            margin: 2px;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+        .welcome-text {
+            margin-right: 15px;
+            color: #fff;
         }
     </style>
 </head>
@@ -63,9 +84,17 @@
             <a class="nav-link disabled" href="#">Deshabilitado</a>
           </li>
         </ul>
-        <form class="d-flex">
+        <form class="d-flex" action="../controllers/cerrar_sesion.php" method="POST">
+          <span>BIENVENIDO
+             <?php 
+             echo $_SESSION['usuario'];
+             ?> 
+        </span>
           <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Buscar</button>
+          <button class="btn btn-outline-success" type="button">Buscar</button>
+
+          <button class="btn btn-warning" type="submit">CERRAR SECCION</button>
+
         </form>
       </div>
     </div>
