@@ -42,7 +42,6 @@
                     <h3 class="card-title text-center mb-4 text-primary">Iniciar Sesión</h3>
                 <form action="../controllers/validar_usuario.php" method="POST">
 
-                    <form action="/ruta_de_autenticacion" method="POST">
                      <div class="mb-3">
                         <label for="username" class="form-label">Nombre de usuario</label>
                         <input type="text" class="form-control" id="username" name="username" placeholder="Ingresa tu nombre de usuario" required>
@@ -62,7 +61,7 @@
                 </div>
             </div>
             <div class="text-center text-white">
-                <p>¿No tienes cuenta? <a href="/ruta_de_registro" class="text-warning">Regístrate</a></p>
+                <p>¿No tienes cuenta? <a href="registro.php" class="text-warning">Regístrate</a></p>
             </div>
         </div>
     </div>

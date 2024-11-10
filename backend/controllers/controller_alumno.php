@@ -29,7 +29,24 @@ class AlumnoDAO{
     }
 
     // ------------------ MÉTODO DE CAMBIOS ------------------
+    public function modificarAlumno($num_control, $nombre, $primerApellido, $segundoApellido, $edad, $semestre, $carrera) {
+        $sql = "UPDATE alumnos SET 
+                    Nombre = '$nombre', 
+                    Primer_Ap = '$primerApellido', 
+                    Segundo_Ap = '$segundoApellido', 
+                    Edad = $edad, 
+                    Semestre = $semestre, 
+                    Carrera = '$carrera' 
+                WHERE Num_Control = '$num_control'";
 
+            $res = mysqli_query($this->conexion->getConexion(), $sql);
+
+            if (!$res) {
+                echo "Error al ejecutar la consulta: " . mysqli_error($this->conexion->getConexion());
+            }
+        
+            return $res;
+        }
 
     // ------------------ MÉTODO DE CONSULTAS ------------------
     public function mostrarAlumnos($filtro){
@@ -39,7 +56,30 @@ class AlumnoDAO{
 
     }
 
+    public function obtenerTodosAlumnos($num_control = null) {
+        $sql = "SELECT * FROM alumnos";
+        if ($num_control) {
+            $sql .= " WHERE Num_Control = '$num_control'";
         }
+        $res = mysqli_query($this->conexion->getConexion(), $sql);
+    
+        $alumnos = [];
+        while ($fila = mysqli_fetch_assoc($res)) {
+            $alumnos[] = $fila;
+        }
+        return $alumnos;
+    }
 
-
+     public function infoAlumnos() {
+        $conexion = $this->conexion->getConexion();
+        $consulta = "SELECT * FROM alumnos"; 
+        $resultado = mysqli_query($conexion, $consulta);
+    
+        if (!$resultado) {
+            die("Error en la consulta: " . mysqli_error($conexion));
+        }
+    
+        return $resultado;
+    }
+}
 ?>

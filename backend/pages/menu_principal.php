@@ -67,22 +67,16 @@ header('Location: login.php');
             <a class="nav-link" href="formulario_altas.php">Agregar</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="bajas_cambios.php">Eliminar/Modificar</a>
+            <a class="nav-link" href="bajas_cambios.php">Eliminar</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Opciones
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Acción</a></li>
-              <li><a class="dropdown-item" href="#">Otra acción</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Algo más aquí</a></li>
-            </ul>
+          
           </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" href="#">Deshabilitado</a>
-          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="cambios.php">Cambios</a>
+             </li>
+           <li class="nav-item">
+              <a class="nav-link" href="consultas.php">Consultas</a>
+            </li>
         </ul>
         <form class="d-flex" action="../controllers/cerrar_sesion.php" method="POST">
           <span>BIENVENIDO
@@ -90,10 +84,7 @@ header('Location: login.php');
              echo $_SESSION['usuario'];
              ?> 
         </span>
-          <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-          <button class="btn btn-outline-success" type="button">Buscar</button>
-
-          <button class="btn btn-warning" type="submit">CERRAR SECCION</button>
+          <button class="btn btn-warning" type="submit">CERRAR SESION</button>
 
         </form>
       </div>
