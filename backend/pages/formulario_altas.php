@@ -12,24 +12,44 @@
 <body>
 <?php require_once('menu_principal.php'); ?>
 
-<?php
+
+<!--
+?php
 if (isset($_GET['status']) && $_GET['status'] == 'success') {
     echo '<div class="alert alert-success" role="alert">Registro agregado correctamente.</div>';
 } elseif (isset($_GET['status']) && $_GET['status'] == 'error') {
     echo '<div class="alert alert-danger" role="alert">Error al agregar el registro.</div>';
 }
-?>
+?
+-->
 
+<div class="alert alert-warning alert-dismissible fade show" role="alert"
+    style="display: <?php echo (isset($_SESSION['insercion_correcta']) && $_SESSION['insercion_correcta']) ? 'block' : 'none'; ?>;">
+    Registro agregado CORRECTAMENTE.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div>
+    <?php echo (isset($_SESSION['error_validacion'])) ?'ERROR' : ''?>
+</div>
 
 <div class="form-container">
     <form action="../controllers/procesar_altas.php" method="post" class="row g-3">
         <div class="col-md-6">
             <label for="caja_num_control" class="form-label">Número de Control</label>
-            <input type="text" class="form-control" id="caja_num_control" name="caja_num_control" placeholder="Solo números" maxlength="10" required>
+            <input type="text" class="form-control" id="caja_num_control" name="caja_num_control" placeholder="Solo números" 
+            value="<?php echo isset($_SESSION['nc']) ? $_SESSION['nc'] :'' ?>"
+            maxlength="10" required>
+            <div style="color:red;">
+                <?php echo (isset($_SESSION['nc'])) ?'* Solo numeros!!! ' : '' ?>
+            </div>
         </div>
         <div class="col-md-6">
             <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Solo letras" maxlength="50" required>
+            <input type="text" class="form-control" id="caja_nombre" name="caja_nombre" placeholder="Solo letras" 
+            value="<?php echo isset($_SESSION['nombre']) ? $_SESSION['nombre'] :'' ?>"
+            maxlength="50" required>
+
         </div>
         <div class="col-md-6">
             <label for="primerApellido" class="form-label">Primer Apellido</label>
@@ -59,3 +79,12 @@ if (isset($_GET['status']) && $_GET['status'] == 'success') {
 
 </body>
 </html>
+
+<?php
+unset($_SESSION['insercion_correcta']);
+unset($_SESSION['error_validacion']);
+
+unset($_SESSION['nc']);
+unset($_SESSION['nombre']);
+
+?>
